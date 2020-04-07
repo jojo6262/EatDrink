@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.button_customer: /** Start a new Activity Customer.java */
-                Intent intent1 = new Intent(this, MenuActivity.class);
+                Intent intent1 = new Intent(this, SplashScreenActivity.class);
                 this.startActivity(intent1);
                 break;
 

@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     protected Button btnCook , btnCustomer, btnCasheir;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(v.getId()){
 
-            case R.id.button_cook: /** Start a new Activity Customer.java */
+            case R.id.button_cook: /** Start a new Activity Cook.java */
                 Intent intent = new Intent(this, CookActivity.class);
                 this.startActivity(intent);
                 break;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.startActivity(intent1);
                 break;
 
-            case R.id.button_cashier: /** Start a new Activity Customer.java */
+            case R.id.button_cashier: /** Start a new Activity Cashier.java */
                 Intent intent2 = new Intent(this, CashierActivity.class);
                 this.startActivity(intent2);
                 break;

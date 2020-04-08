@@ -8,11 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class menu_adapter extends RecyclerView.Adapter< cocktail_adapter.MenuHolder  >{
+public class menu_adapter extends RecyclerView.Adapter< menu_adapter.MenuHolder  >{
 
     @NonNull
     @Override
-    public  cocktail_adapter.MenuHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public  menu_adapter.MenuHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_menu,parent,false);
         MenuHolder holder = new MenuHolder(view);
         return holder;
@@ -20,7 +20,7 @@ public class menu_adapter extends RecyclerView.Adapter< cocktail_adapter.MenuHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  cocktail_adapter.MenuHolder holder, int position) {
+    public void onBindViewHolder(@NonNull  menu_adapter.MenuHolder holder, int position) {
         holder.setItem(position);
 
     }

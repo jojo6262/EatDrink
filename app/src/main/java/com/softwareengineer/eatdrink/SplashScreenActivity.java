@@ -16,13 +16,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        sp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SplashScreenActivity.this,MenuActivity.class);
-                startActivity(intent);
-            }
-        });
+//        sp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(SplashScreenActivity.this,MenuActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 }

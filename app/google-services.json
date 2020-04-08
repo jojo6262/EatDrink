@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "167148880959",
+    "firebase_url": "https://eatdrink-se.firebaseio.com",
+    "project_id": "eatdrink-se",
+    "storage_bucket": "eatdrink-se.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:167148880959:android:f86a5b90fda8ff0afd648a",
+        "android_client_info": {
+          "package_name": "com.softwareengineer.eatdrink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "167148880959-ca4bnqfdqtcm30l1777suvd1lurlt9bu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0YpW-B3KvfW-vGIt_OdKXUY7O1V1j1eQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "167148880959-ca4bnqfdqtcm30l1777suvd1lurlt9bu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

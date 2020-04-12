@@ -1,5 +1,6 @@
 package com.softwareengineer.eatdrink;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,62 +20,112 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Tag;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class CookActivity extends AppCompatActivity {
     DatabaseReference show;
     private String Tag;
+    private TextView txttest;
 
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook);
-        final TextView txttest;
-        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference mUsersRef = mRootRef.child("users");
-        DatabaseReference mMessagesRef = mRootRef.child("messages");
-        mUsersRef.child("id-111").setValue("jojo6262");
 
+        txttest = findViewById(R.id.txttest);
+
+        // init firebase root reference
+        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+
+        // [WORKED] init a child ref from firebase ref (mRootRef)
+        DatabaseReference mUsersRef = mRootRef.child("users");
+        mUsersRef.child("id-111").setValue("jojo626262626262626262626262626262");
+
+        // [WORKED] init another child ref from firebase ref (mRootRef)
+        DatabaseReference mMessagesRef = mRootRef.child("messages");
         String key = mMessagesRef.push().getKey();
-        HashMap<String, Object> postValues = new HashMap<>();
+
+        final HashMap<String, Object> postValues = new HashMap<>();
         postValues.put("username", "Jirawatee");
         postValues.put("text", "Hello World!");
-
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/messages/" + key, postValues);
         childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
-
         mRootRef.updateChildren(childUpdates);
 
 
+        mRootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        txttest = (TextView) findViewById(R.id.editText);
+                /*
+                 *  eatdrink-se
+                 *  |__ messages
+                 *  |   |_ -M4in3Cr-s8yGSztc2-z
+                 *  |       |__ text : "Hello, World!"   # <--- Say you want this data
+                 *  |       |__ username: "Jirawatee"
+                 *  |__ user-messages
+                 *  |   |_ ...
+                 *  |__ users
+                 *  |   |_ ...
+                 *
+                 *
+                 *  To get the data:
+                 *  String s = snapshot.child("messages/-M4in3Cr-s8yGSztc2-z/text").getValue();
+                 *  >> Hello, World
+                 *
+                 * */
 
+                String s = snapshot.child("messages/-M4in3Cr-s8yGSztc2-z").getValue().toString();
 
-//        private void getData(DataSnapshot dataSnapshot) {
-//            for(DataSnapshot ds : dataSnapshot.getChildren()){
-//                Log.d(Tag, "User Name inside getData: "+ds.child("text").getValue());
+//                String s = "";
+//                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 //
-////                hospitalCity = String.valueOf(ds.child("city").getValue());
-////                Log.d(TAG, "User city inside getData: "+ds.child("city").getValue());
+//                    // postSnapshot => ['messages']
+////                    s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("-M4in3Cr-s8yGSztc2-z/text") + "\n";
+////                    s += postSnapshot.child("-M4in3Cr-s8yGSztc2-z/text").getValue() + "\n";
 //
-//                break;
-//            }
+//
+//
+////                    for (DataSnapshot postMS: messagesSnapshot.getChildren()){
+////                        s += postMS.getChildrenCount();
+////                    }
+////
+////                    // user-messages
+////                    DataSnapshot userMessagesSnapshot = postSnapshot.child("user-messages");
+////                    for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
+////                        s += postMS.getKey();
+////                    }
+////
+////                    // users
+////                    DataSnapshot usersSnapshot = postSnapshot.child("users");
+////                    for (DataSnapshot postMS: usersSnapshot.getChildren()){
+////                        s += postMS.getKey();
+////                    }
+//                }
+                txttest.setText(s);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+//        txttest.setText("...");
+
+    }
+
+    private void getData(DataSnapshot dataSnapshot) {
+        for(DataSnapshot ds : dataSnapshot.getChildren()){
+            Log.d(Tag, "User Name inside getData: "+ds.child("messages").getValue());
         }
-//        mRootRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                DataSnapshot singleSnapshot = (DataSnapshot) dataSnapshot.getChildren();
-//                Log.d("get data",String.valueOf(singleSnapshot));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
+        Log.d(Tag, "--------------------------------------------------------------");
     }
 
 }

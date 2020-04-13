@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +32,6 @@ public class CookActivity extends AppCompatActivity {
     private String Tag;
     private TextView txttest;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,22 +41,22 @@ public class CookActivity extends AppCompatActivity {
         txttest = findViewById(R.id.txttest);
 
         // init firebase root reference
-        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference().child("");
 
         // [WORKED] init a child ref from firebase ref (mRootRef)
-        DatabaseReference mUsersRef = mRootRef.child("users");
-        mUsersRef.child("id-111").setValue("jojo626262626262626262626262626262");
+//        DatabaseReference mUsersRef = mRootRef.child("users");
+ //       mUsersRef.child("id-111").setValue("jojo626262626262626262626262626262");
 
         // [WORKED] init another child ref from firebase ref (mRootRef)
-        DatabaseReference mMessagesRef = mRootRef.child("messages");
-        String key = mMessagesRef.push().getKey();
+   //     DatabaseReference mMessagesRef = mRootRef.child("messages");
+    //    String key = mMessagesRef.push().getKey();
 
         final HashMap<String, Object> postValues = new HashMap<>();
-        postValues.put("username", "Jirawatee");
-        postValues.put("text", "Hello World!");
+//        postValues.put("username", "Jirawatee");
+ //       postValues.put("text", "Hello World!");
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/messages/" + key, postValues);
-        childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
+//        childUpdates.put("/messages/" + key, postValues);
+      //  childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
         mRootRef.updateChildren(childUpdates);
 
 
@@ -82,34 +82,36 @@ public class CookActivity extends AppCompatActivity {
                  *
                  * */
 
-                String s = snapshot.child("messages/-M4in3Cr-s8yGSztc2-z").getValue().toString();
+               // String s = snapshot.child("user-messages").getValue().toString();
 
-//                String s = "";
-//                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-//
-//                    // postSnapshot => ['messages']
-////                    s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("-M4in3Cr-s8yGSztc2-z/text") + "\n";
-////                    s += postSnapshot.child("-M4in3Cr-s8yGSztc2-z/text").getValue() + "\n";
-//
-//
-//
-////                    for (DataSnapshot postMS: messagesSnapshot.getChildren()){
-////                        s += postMS.getChildrenCount();
-////                    }
-////
-////                    // user-messages
-////                    DataSnapshot userMessagesSnapshot = postSnapshot.child("user-messages");
-////                    for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-////                        s += postMS.getKey();
-////                    }
-////
-////                    // users
-////                    DataSnapshot usersSnapshot = postSnapshot.child("users");
-////                    for (DataSnapshot postMS: usersSnapshot.getChildren()){
-////                        s += postMS.getKey();
-////                    }
-//                }
-                txttest.setText(s);
+                String s = "";
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+
+                 //    postSnapshot => ['messages']
+        //            s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("allmenu") + "\n";
+          //         s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("allmenu") ;
+         //           s += postSnapshot.child("").getValue() + "\n";
+
+
+                    DataSnapshot messagesSnapshot =postSnapshot.child("");
+                    for (DataSnapshot postMS: messagesSnapshot.getChildren()) {
+                        if (postSnapshot.hasChild("allmenu") == true) {
+                            s += postMS.getChildrenCount() + "\n";
+                        }
+                    }
+                  //   user-messages
+                    DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
+                    for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
+      //                  s += postMS.getValue().toString();
+                    }
+
+                  //   users
+                    DataSnapshot usersSnapshot = postSnapshot.child("");
+                    for (DataSnapshot postMS: usersSnapshot.getChildren()){
+    ///                    s += postMS.getKey();
+                    }
+                }
+               txttest.setText(s);
             }
 
             @Override
@@ -117,13 +119,16 @@ public class CookActivity extends AppCompatActivity {
             }
         });
 
-//        txttest.setText("...");
+        txttest.setText("...");
 
     }
 
     private void getData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-            Log.d(Tag, "User Name inside getData: "+ds.child("messages").getValue());
+//            Log.d(Tag, "User Name inside getData: "+ds.child("user-messages").getChildrenCount());
+  //          txttest.setText(s);
+//            int size = (int) dataSnapshot.getChildrenCount();
+  //          txttest.setText(size);
         }
         Log.d(Tag, "--------------------------------------------------------------");
     }

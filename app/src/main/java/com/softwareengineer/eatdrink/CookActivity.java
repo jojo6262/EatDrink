@@ -51,13 +51,13 @@ public class CookActivity extends AppCompatActivity {
         DatabaseReference mMessagesRef = mRootRef.child("messages");
         String key = mMessagesRef.push().getKey();
 
-        final HashMap<String, Object> postValues = new HashMap<>();
-        postValues.put("username", "Jirawatee");
-        postValues.put("text", "Hello World!");
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/messages/" + key, postValues);
-        childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
-        mRootRef.updateChildren(childUpdates);
+//        final HashMap<String, Object> postValues = new HashMap<>();
+//        postValues.put("username", "Jirawatee");
+//        postValues.put("text", "Hello World!");
+//        Map<String, Object> childUpdates = new HashMap<>();
+//        childUpdates.put("/messages/" + key, postValues);
+//        childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
+//        mRootRef.updateChildren(childUpdates);
 
 
         mRootRef.addValueEventListener(new ValueEventListener() {
@@ -82,7 +82,7 @@ public class CookActivity extends AppCompatActivity {
                  *
                  * */
 
-                String s = snapshot.child("messages/-M4in3Cr-s8yGSztc2-z").getValue().toString();
+                String s = snapshot.child("user-messages/menu").getValue().toString();
 
 //                String s = "";
 //                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
@@ -109,7 +109,10 @@ public class CookActivity extends AppCompatActivity {
 ////                        s += postMS.getKey();
 ////                    }
 //                }
-                txttest.setText(s);
+                for(DataSnapshot dsData : snapshot.getChildren()){
+                    System.out.println( "User Name inside getData: "+dsData.child("user-messages/menu").getValue().toString());
+                }
+                //txttest.setText(s);
             }
 
             @Override

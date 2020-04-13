@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_cook"
         android:layout_width="564dp"
         android:layout_height="360dp"
         app:layout_constraintEnd_toEndOf="parent"

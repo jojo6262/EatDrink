@@ -3,6 +3,8 @@ package com.softwareengineer.eatdrink;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import com.google.firebase.database.core.Tag;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +36,9 @@ public class CookActivity extends AppCompatActivity {
     DatabaseReference show;
     private String Tag;
     private TextView txttest;
+    protected List<CookView> cvList;
+    protected List<CookPriceView> cpvList;
+    RecyclerView recycleCook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,8 @@ public class CookActivity extends AppCompatActivity {
       //  childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
         mRootRef.updateChildren(childUpdates);
 
-
+        cvList = new ArrayList<>();
+        cpvList = new ArrayList<>();
         mRootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,6 +94,8 @@ public class CookActivity extends AppCompatActivity {
                // String s = snapshot.child("user-messages").getValue().toString();
 
                 String s = "";
+                String price = "";
+
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
@@ -105,8 +114,13 @@ public class CookActivity extends AppCompatActivity {
                   //   user-messages
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-                        s += postMS.child("IDOrder").getValue().toString();
+                        s = postMS.child("IDOrder").getValue().toString();
+                        price = postMS.child("Price").getValue().toString();
+                        cvList.add(new CookView(s));
+                        cpvList.add(new CookPriceView(price));
                     }
+
+
 
                   //   users
                     DataSnapshot usersSnapshot = postSnapshot.child("");
@@ -114,7 +128,8 @@ public class CookActivity extends AppCompatActivity {
     ///                    s += postMS.getKey();
                     }
                 }
-               txttest.setText(s);
+                createRecycle(cvList,cpvList);
+               //txttest.setText(s);
             }
 
             @Override
@@ -122,8 +137,16 @@ public class CookActivity extends AppCompatActivity {
             }
         });
 
-        txttest.setText("...");
+        System.out.println("+++++++++ >>>"+cvList.size());
+        //txttest.setText("...");
 
+
+    }
+
+    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList){
+        recycleCook = findViewById(R.id.rc_cook);
+        recycleCook.setLayoutManager(new LinearLayoutManager(this));
+        recycleCook.setAdapter(new cook_adapter(cvList,cpvList));
     }
 
     private void getData(DataSnapshot dataSnapshot) {

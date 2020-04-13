@@ -13,12 +13,17 @@ android:orientation="vertical">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
-<TextView
+    <TextView
     android:id="@+id/text_description"
     android:text="Index = 0"
     android:textSize="16sp"
     android:textColor="#aeaeae"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="798dp"
+        android:id="@+id/re_order"
+        android:layout_height="41dp" />
 
 </LinearLayout>

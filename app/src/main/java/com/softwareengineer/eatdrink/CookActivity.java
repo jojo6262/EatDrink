@@ -38,6 +38,9 @@ public class CookActivity extends AppCompatActivity {
     private TextView txttest;
     protected List<CookView> cvList;
     protected List<CookPriceView> cpvList;
+    protected List<CookOrderView> covList;
+    protected List<CookMenuView> cmvList;
+    protected List<CookCountView> ccvList;
     RecyclerView recycleCook;
 
     @Override
@@ -69,6 +72,9 @@ public class CookActivity extends AppCompatActivity {
 
         cvList = new ArrayList<>();
         cpvList = new ArrayList<>();
+        covList = new ArrayList<>();
+        cmvList = new ArrayList<>();
+        ccvList = new ArrayList<>();
         mRootRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -95,7 +101,9 @@ public class CookActivity extends AppCompatActivity {
 
                 String s = "";
                 String price = "";
-
+                String name="";
+                String count="";
+                String menu="";
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
@@ -116,9 +124,22 @@ public class CookActivity extends AppCompatActivity {
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
                         s = postMS.child("IDOrder").getValue().toString();
                         price = postMS.child("Price").getValue().toString();
+                        count = postMS.child("CountOrder").getValue().toString();
+                        name = postMS.child("Name").getValue().toString();
+                        menu = postMS.child("IDMenu").getValue().toString();
                         cvList.add(new CookView(s));
                         cpvList.add(new CookPriceView(price));
+                        ccvList.add(new CookCountView(count));
+                        covList.add(new CookOrderView(name));
+                        cmvList.add(new CookMenuView(menu));
+//                        System.out.println(count);
                     }
+     /*
+                  Log.d("list", cvList.toString());
+                    System.out.println(ccvList.toString());
+   */
+//                    System.out.println(ccvList.get(1));
+//                    System.out.println("++++++++++++++++");
 
 
 
@@ -128,7 +149,7 @@ public class CookActivity extends AppCompatActivity {
     ///                    s += postMS.getKey();
                     }
                 }
-                createRecycle(cvList,cpvList);
+                createRecycle(cvList,cpvList,ccvList,cmvList,covList);
                //txttest.setText(s);
             }
 
@@ -143,10 +164,10 @@ public class CookActivity extends AppCompatActivity {
 
     }
 
-    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList){
+    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookCountView> ccvList,List<CookMenuView> cmvList,List<CookOrderView> covList){
         recycleCook = findViewById(R.id.rc_cook);
         recycleCook.setLayoutManager(new LinearLayoutManager(this));
-        recycleCook.setAdapter(new cook_adapter(cvList,cpvList));
+        recycleCook.setAdapter(new cook_adapter(cvList,cpvList,covList,cmvList,ccvList,this));
     }
 
     private void getData(DataSnapshot dataSnapshot) {

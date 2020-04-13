@@ -18,12 +18,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Tag;
 
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -85,6 +87,7 @@ public class CookActivity extends AppCompatActivity {
                // String s = snapshot.child("user-messages").getValue().toString();
 
                 String s = "";
+
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
                  //    postSnapshot => ['messages']
@@ -93,16 +96,16 @@ public class CookActivity extends AppCompatActivity {
          //           s += postSnapshot.child("").getValue() + "\n";
 
 
-                    DataSnapshot messagesSnapshot =postSnapshot.child("");
-                    for (DataSnapshot postMS: messagesSnapshot.getChildren()) {
-                        if (postSnapshot.hasChild("allmenu") == true) {
-                            s += postMS.getChildrenCount() + "\n";
-                        }
-                    }
+//                    DataSnapshot messagesSnapshot =postSnapshot.child("");
+//                    for (DataSnapshot postMS: messagesSnapshot.getChildren()) {
+//                        if (postSnapshot.hasChild("allmenu") == true) {
+//                            s += postMS.getChildrenCount() + "\n";
+//                        }
+//                    }
                   //   user-messages
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-      //                  s += postMS.getValue().toString();
+                        s += postMS.child("IDOrder").getValue().toString();
                     }
 
                   //   users

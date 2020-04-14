@@ -49,7 +49,7 @@ public class CookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook);
 
-        txttest = findViewById(R.id.txttest);
+   //     txttest = findViewById(R.id.txttest);
 
         // init firebase root reference
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference().child("");
@@ -99,11 +99,12 @@ public class CookActivity extends AppCompatActivity {
 
                // String s = snapshot.child("user-messages").getValue().toString();
 
-                String s = "";
+                String na = "";
                 String price = "";
-                String name="";
-                String count="";
+                String order="";
                 String menu="";
+                String count="";
+
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
@@ -122,18 +123,36 @@ public class CookActivity extends AppCompatActivity {
                   //   user-messages
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-                        s = postMS.child("IDOrder").getValue().toString();
+                        na = postMS.child("Name").getValue().toString();
                         price = postMS.child("Price").getValue().toString();
-                        count = postMS.child("CountOrder").getValue().toString();
-                        name = postMS.child("Name").getValue().toString();
+                        order = postMS.child("IDOrder").getValue().toString();
                         menu = postMS.child("IDMenu").getValue().toString();
-                        cvList.add(new CookView(s));
+                        count = postMS.child("CountOrder").getValue().toString();
+                        cvList.add(new CookView(na));
                         cpvList.add(new CookPriceView(price));
-                        ccvList.add(new CookCountView(count));
-                        covList.add(new CookOrderView(name));
+                        covList.add(new CookOrderView(order));
                         cmvList.add(new CookMenuView(menu));
+                        ccvList.add(new CookCountView(count));
+
+//                        count = postMS.child("CountOrder").getValue().toString();
+//                        name = postMS.child("Name").getValue().toString();
+//                        menu = postMS.child("IDMenu").getValue().toString();
+//                        ccvList.add(new CookCountView(count));
+//                        covList.add(new CookOrderView(name));
+//                        cmvList.add(new CookMenuView(menu));
 //                        System.out.println(count);
+//                        DataSnapshot userFood = postMS.child("Food");
+//                        for(DataSnapshot listfood: userFood.getChildren()){
+//                            count = listfood.child("Count").getValue().toString();
+//                            name = listfood.child("Name").getValue().toString();
+//                            menu = listfood.child("IDFood").getValue().toString();
+//                            ccvList.add(new CookCountView(count));
+//                            covList.add(new CookOrderView(name));
+//                            cmvList.add(new CookMenuView(menu));
+
+  //                      }
                     }
+
      /*
                   Log.d("list", cvList.toString());
                     System.out.println(ccvList.toString());
@@ -149,7 +168,8 @@ public class CookActivity extends AppCompatActivity {
     ///                    s += postMS.getKey();
                     }
                 }
-                createRecycle(cvList,cpvList,ccvList,cmvList,covList);
+                System.out.println(cvList.size());
+                createRecycle(cvList,cpvList,covList,cmvList,ccvList);
                //txttest.setText(s);
             }
 
@@ -158,13 +178,13 @@ public class CookActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("+++++++++ >>>"+cvList.size());
+  //      System.out.println("+++++++++ >>>"+cvList.size());
         //txttest.setText("...");
 
 
     }
 
-    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookCountView> ccvList,List<CookMenuView> cmvList,List<CookOrderView> covList){
+    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookOrderView> covList,List<CookMenuView> cmvList,List<CookCountView> ccvList){
         recycleCook = findViewById(R.id.rc_cook);
         recycleCook.setLayoutManager(new LinearLayoutManager(this));
         recycleCook.setAdapter(new cook_adapter(cvList,cpvList,covList,cmvList,ccvList,this));

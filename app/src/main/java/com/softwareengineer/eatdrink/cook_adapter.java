@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
     }
     @Override
     public  cook_adapter.cookHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_order,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_order,parent,false);
         cook_adapter.cookHolder holder = new cook_adapter.cookHolder(view);
         this.listView = view;
         return holder;
@@ -44,21 +43,22 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
     public void onBindViewHolder(@NonNull cookHolder holder, int position) {
         CookView txtCv = cv.get(position);
         CookPriceView txtCpv = cpv.get(position);
+        CookOrderView txtcov =cov.get(position);
+        CookMenuView txtcmv=cmv.get(position);
+        CookCountView txtccv=ccv.get(position);
 //        CookCountView txtCcv = ccv.get(position);
 
-//        System.out.println(txtCv.CookOrder);
-//        System.out.println(txtCpv.CookPrice);
-        holder.table.setText(txtCv.CookOrder);
-        holder.menu.setText(txtCpv.CookPrice);
+      System.out.println(txtCv.CookName);
+
+
+        holder.name.setText(txtCv.CookName);
+        holder.price.setText(txtCpv.CookPrice);
+        holder.order.setText(txtcov.CookIDOrder);
+        holder.menu.setText(txtcmv.CookMenu);
+        holder.count.setText(txtccv.CookCount);
         //holder.setItem(position);
-        createRecycle(ccv,cmv,cov,cContext);
     }
 
-    private void createRecycle(List<CookCountView> ccvList,List<CookMenuView> cmvList,List<CookOrderView> covList,Context cContext){
-        recycleCook = listView.findViewById(R.id.re_order);
-        recycleCook.setLayoutManager(new LinearLayoutManager(cContext));
-        recycleCook.setAdapter(new listmenu_adapter(covList,cmvList,ccvList,cContext));
-    }
     @Override
     public int getItemCount() {
         return cpv.size();
@@ -67,13 +67,19 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
 
     class cookHolder extends  RecyclerView.ViewHolder{
 
-        TextView table;
+        TextView count;
+        TextView price;
+        TextView name;
         TextView menu;
+        TextView order;
 
         public cookHolder(@NonNull View itemView) {
             super(itemView);
-            table=itemView.findViewById(R.id.text_title);
-            menu=itemView.findViewById(R.id.text_description);
+            count=itemView.findViewById(R.id.txtcount);
+            menu=itemView.findViewById(R.id.txtidmenu);
+            name=itemView.findViewById(R.id.txtfoodname);
+            price=itemView.findViewById(R.id.txtprice);
+            order=itemView.findViewById(R.id.txtidorder);
         }
         public void setItem(int position)
         {

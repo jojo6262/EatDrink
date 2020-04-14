@@ -2,9 +2,9 @@ package com.softwareengineer.eatdrink;
 
 public class CookView {
 
-    public String CookOrder;
+    public String CookName;
 
-    public  CookView(String CookOrder){
-        this.CookOrder=CookOrder;
+    public  CookView(String CookName){
+        this.CookName=CookName;
     }
 }

@@ -76,7 +76,7 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
         public cookHolder(@NonNull View itemView) {
             super(itemView);
             count=itemView.findViewById(R.id.txtcount);
-            menu=itemView.findViewById(R.id.txtidmenu);
+            menu=itemView.findViewById(R.id.txtorder);
             name=itemView.findViewById(R.id.txtfoodname);
             price=itemView.findViewById(R.id.txtprice);
             order=itemView.findViewById(R.id.txtidorder);

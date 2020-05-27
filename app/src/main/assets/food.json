@@ -1,0 +1,150 @@
+{
+  "Food": [
+    {
+      "ID": "A001",
+      "Name": "Hamburger",
+      "Image": "Hamburger.jpg",
+      "Price": "120"
+    },
+    {
+      "ID": "A002",
+      "Name": "French fries",
+      "Image": "French fries.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "A003",
+      "Name": "Chicken tendon fries",
+      "Image": "Chicken tendon fries.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "A004",
+      "Name": "Crispy Pork with Basil rice",
+      "Image": "Crispy Pork with Basil rice.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "A005",
+      "Name": "Mushroom soup",
+      "Image": "Mushroom soup.jpg",
+      "Price": "150"
+    },
+    {
+      "ID": "A006",
+      "Name": "Nuts",
+      "Image": "Nuts.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "A007",
+      "Name": "Nuggets",
+      "Image": "Nuggets.jpg",
+      "Price": "150"
+    },
+    {
+      "ID": "A008",
+      "Name": "Nacho",
+      "Image": "Nacho.jpg",
+      "Price": "120"
+    },
+    {
+      "ID": "A009",
+      "Name": "Pizza",
+      "Image": "Pizza.jpg",
+      "Price": "200"
+    },
+    {
+      "ID": "A010",
+      "Name": "Beef steak",
+      "Image": "Beef steak.jpg",
+      "Price": "250"
+    },
+    {
+      "ID": "A011",
+      "Name": "Dried Bacon Spaghetti",
+      "Image": "Dried Bacon Spaghetti.jpg",
+      "Price": "150"
+    },
+    {
+      "ID": "A012",
+      "Name": "Carbonara Spaghetti",
+      "Image": "Carbonara Spaghetti.jpg",
+      "Price": "120"
+    }
+  ],
+  "Drink": [
+    {
+      "ID": "B001",
+      "Name": "absolut vodka",
+      "Image": "absolut vodka.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B002",
+      "Name": "bacardi",
+      "Image": "bacardi.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B003",
+      "Name": "berry liqueurs",
+      "Image": "berry liqueurs.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B004",
+      "Name": "blue curacao",
+      "Image": "blue curacao.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B005",
+      "Name": "bombay sapphire",
+      "Image": "bombay sapphire.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B006",
+      "Name": "brugal",
+      "Image": "brugal.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B007",
+      "Name": "chivas regal",
+      "Image": "chivas regal.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B008",
+      "Name": "gin mare",
+      "Image": "gin mare.jpg",
+      "Price": "100"
+    },
+     {
+       "ID": "B009",
+      "Name": "gordon",
+      "Image": "gordon.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B010",
+      "Name": "grey goose",
+      "Image": "grey goose.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B011",
+      "Name": "hennessy",
+      "Image": "hennessy.jpg",
+      "Price": "100"
+    },
+    {
+      "ID": "B012",
+      "Name": "honey bee",
+      "Image": "honey bee.jpg",
+      "Price": "100"
+    }
+  ]
+}

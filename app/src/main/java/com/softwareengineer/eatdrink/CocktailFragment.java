@@ -2,63 +2,90 @@ package com.softwareengineer.eatdrink;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.softwareengineer.eatdrink.adapter.cocktailFragmentAdapter;
+import com.softwareengineer.eatdrink.adapter.menuFragmentAdapter;
+import com.softwareengineer.eatdrink.view.cFragmentImage;
+import com.softwareengineer.eatdrink.view.cFragmentName;
+import com.softwareengineer.eatdrink.view.cFragmentPrice;
+import com.softwareengineer.eatdrink.view.mFragmentImage;
+import com.softwareengineer.eatdrink.view.mFragmentName;
+import com.softwareengineer.eatdrink.view.mFragmentPrice;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CocktailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CocktailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CocktailFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CocktailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CocktailFragment newInstance(String param1, String param2) {
-        CocktailFragment fragment = new CocktailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public JSONObject listMenu;
+    public List<cFragmentName> countName;
+    public List<cFragmentImage> countImage;
+    public List<cFragmentPrice> countPrice;
+    RecyclerView recycleMenu;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cocktail, container, false);
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_cocktail, container, false);
+        countName = new ArrayList<>();
+        countImage = new ArrayList<>();
+        countPrice = new ArrayList<>();
+        try {
+            loadJSONFromAsset();
+            String aa = listMenu.getString("Drink");
+            JSONArray JA = new JSONArray(aa);
+            System.out.println(JA);
+            for(int i =0;i<JA.length();i++){
+                JSONObject list1 = JA.getJSONObject(i);
+                countName.add(new cFragmentName(list1.getString("Name")));
+                countImage.add(new cFragmentImage(list1.getString("Image")));
+                countPrice.add(new cFragmentPrice(list1.getString("Price")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        createRecycle(view,countName,countImage,countPrice);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void createRecycle(ViewGroup view,List<cFragmentName> cvList,List<cFragmentImage> cpvList,List<cFragmentPrice> covList){
+        recycleMenu = view.findViewById(R.id.rc_ctFragment);
+        recycleMenu.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recycleMenu.setAdapter(new cocktailFragmentAdapter(cvList,cpvList,covList,getActivity()));
+    }
+
+    public void loadJSONFromAsset() throws JSONException {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open("food.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+        }
+        listMenu = new JSONObject(json);
+
     }
 }

@@ -8,6 +8,33 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_cashier"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="625dp"
+        android:layout_height="305dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtbill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <TextView
+        android:id="@+id/txtbill"
+        android:layout_width="311dp"
+        android:layout_height="83dp"
+        android:layout_marginBottom="384dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_clear"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_width="245dp"
+        android:layout_height="129dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="356dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

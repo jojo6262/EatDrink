@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.button_cashier: /** Start a new Activity Cashier.java */
-                Intent intent2 = new Intent(this, CashierActivity.class);
+                Intent intent2 = new Intent(this, CashierTableActivity.class);
                 this.startActivity(intent2);
                 break;
         }

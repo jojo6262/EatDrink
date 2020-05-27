@@ -9,6 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.softwareengineer.eatdrink.view.CookCountView;
+import com.softwareengineer.eatdrink.view.CookMenuView;
+import com.softwareengineer.eatdrink.view.CookOrderView;
+import com.softwareengineer.eatdrink.view.CookPriceView;
+import com.softwareengineer.eatdrink.view.CookView;
+
 import java.util.List;
 
 public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> {
@@ -80,10 +86,6 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
             name=itemView.findViewById(R.id.txtfoodname);
             price=itemView.findViewById(R.id.txtprice);
             order=itemView.findViewById(R.id.txtidorder);
-        }
-        public void setItem(int position)
-        {
-
         }
 
     }

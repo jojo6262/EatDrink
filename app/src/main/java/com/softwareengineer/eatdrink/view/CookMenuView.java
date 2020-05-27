@@ -1,6 +1,6 @@
-package com.softwareengineer.eatdrink;
+package com.softwareengineer.eatdrink.view;
 
-class CookMenuView {
+public class CookMenuView {
     public String CookMenu;
 
     public  CookMenuView(String CookMenu){

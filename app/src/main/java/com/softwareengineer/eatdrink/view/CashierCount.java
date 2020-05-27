@@ -1,6 +1,6 @@
-package com.softwareengineer.eatdrink;
+package com.softwareengineer.eatdrink.view;
 
-class CashierCount {
+public class CashierCount {
     public String CashierCount;
 
     public  CashierCount(String CashierCount){

@@ -1,4 +1,4 @@
-package com.softwareengineer.eatdrink;
+package com.softwareengineer.eatdrink.view;
 
 public class CookPriceView {
 

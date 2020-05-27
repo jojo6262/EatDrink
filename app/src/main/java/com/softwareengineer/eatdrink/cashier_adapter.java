@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.softwareengineer.eatdrink.view.CashierCount;
+import com.softwareengineer.eatdrink.view.CashierOrder;
+import com.softwareengineer.eatdrink.view.CashierPrice;
+
 import java.util.List;
 
 public class cashier_adapter extends RecyclerView.Adapter<cashier_adapter.cashierHolder> {

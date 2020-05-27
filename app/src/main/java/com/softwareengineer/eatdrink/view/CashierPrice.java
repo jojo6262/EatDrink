@@ -1,6 +1,6 @@
-package com.softwareengineer.eatdrink;
+package com.softwareengineer.eatdrink.view;
 
-class CashierPrice {
+public class CashierPrice {
     public String CashierPrice;
 
     public  CashierPrice(String CashierPrice){

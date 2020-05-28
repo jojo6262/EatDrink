@@ -44,12 +44,12 @@
                 android:textSize="30dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
+        <ImageView
+            android:id="@+id/imageView_menu"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Add" />
+            app:srcCompat="@drawable/cart" />
 
     </LinearLayout>
 

@@ -4,13 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Fragment;
-
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.softwareengineer.eatdrink.view.cFragmentImage;
+import com.softwareengineer.eatdrink.view.cFragmentName;
+import com.softwareengineer.eatdrink.view.cFragmentPrice;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
+
+    static public List<cFragmentName> list_order = new ArrayList<>();
+    static public List<cFragmentPrice> list_price = new ArrayList<>();
+    static public List<cFragmentImage> list_img = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +29,8 @@ public class MenuActivity extends AppCompatActivity {
         TabLayout TL = findViewById(R.id.tab1);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        CocktailFragment ctfragment = new CocktailFragment();
-        transaction.replace(R.id.fragment3, ctfragment);
+        MenuFragment fragment = new MenuFragment();
+        transaction.replace(R.id.fragment3, fragment);
         transaction.commit();
         TL.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -50,6 +60,18 @@ public class MenuActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        ImageView ii = findViewById(R.id.imageView3);
+        ii.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment fragment = new DialogFragment();
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment3, fragment);
+                transaction.commit();
             }
         });
 

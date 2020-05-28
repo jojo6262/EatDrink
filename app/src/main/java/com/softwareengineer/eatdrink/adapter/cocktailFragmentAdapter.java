@@ -5,14 +5,18 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.softwareengineer.eatdrink.ItemClickListener;
+import com.softwareengineer.eatdrink.MenuActivity;
 import com.softwareengineer.eatdrink.R;
 import com.softwareengineer.eatdrink.view.cFragmentImage;
 import com.softwareengineer.eatdrink.view.cFragmentName;
@@ -45,10 +49,10 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
     }
 
     @Override
-    public void onBindViewHolder(@NonNull cocktailFragmentAdapter.cocktailFragmentHolder holder, int position) {
-        cFragmentName txtFn = fn.get(position);
-        cFragmentImage imgF = fi.get(position);
-        cFragmentPrice txtFp =fp.get(position);
+    public void onBindViewHolder(@NonNull cocktailFragmentAdapter.cocktailFragmentHolder holder, final int position) {
+        final cFragmentName txtFn = fn.get(position);
+        final cFragmentImage imgF = fi.get(position);
+        final cFragmentPrice txtFp =fp.get(position);
         System.out.println(txtFn.cFragmentName+"/"+txtFp.cFragmentPrice);
         holder.name.setText("NAME : " +txtFn.cFragmentName);
         holder.price.setText("PRICE : "+txtFp.cFragmentPrice+" Bath");
@@ -57,6 +61,16 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
         } catch (IOException e) {
             e.printStackTrace();
         }
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick){
+                System.out.println("Click From cocktailFragment//"+position);
+                Toast.makeText(cContext,"Order",Toast.LENGTH_SHORT );
+                MenuActivity.list_order.add(new cFragmentName(txtFn.cFragmentName));
+                MenuActivity.list_price.add(new cFragmentPrice(txtFp.cFragmentPrice));
+                MenuActivity.list_img.add(new cFragmentImage(imgF.cFragmentImage));
+            }
+        });
 
 
     }
@@ -75,21 +89,53 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
         return fn.size();
     }
 
-    class cocktailFragmentHolder extends  RecyclerView.ViewHolder{
+    class cocktailFragmentHolder extends  RecyclerView.ViewHolder implements View.OnClickListener
+            , View.OnLongClickListener, View.OnTouchListener{
 
         ImageView img;
+        ImageView imgct;
         TextView price;
         TextView name;
         TextView txt;
+        private ItemClickListener itemClickListener;
 
 
         public cocktailFragmentHolder(@NonNull View itemView) {
             super(itemView);
+            imgct = itemView.findViewById(R.id.imageView_ct);
             img = itemView.findViewById(R.id.ct_imageView2);
             name=itemView.findViewById(R.id.ct_textView2);
             price=itemView.findViewById(R.id.ct_textView3);
+            imgct.setOnClickListener(this);
         }
 
+        public void setItemClickListener(ItemClickListener itemClickListener) {
+            this.itemClickListener = itemClickListener;
+        }
+
+        @Override
+        public void onClick(View v) {
+            try {
+                itemClickListener.onClick(v, getAdapterPosition(), false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            try {
+                itemClickListener.onClick(v, getAdapterPosition(), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return false;
+        }
     }
 }
 

@@ -122,20 +122,20 @@ public class CashierActivity extends AppCompatActivity {
                                                    DataSnapshot userMessagesSnapshot = postSnapshot.child(tab);
                                                    for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
 //                        na = postMS.child("Name").getValue().toString();
-                                                       menu = postMS.child("IDMENU").getValue().toString();
+                                                       menu = postMS.child("idmenu").getValue().toString();
                                                        System.out.println(menu);
                                                        if (menu.equals("0") ) {
 
                                                        }
                                                        else {
                                                            System.out.println(menu);
-                                                           price = postMS.child("PRICE").getValue().toString();
-                                                           order = postMS.child("NAME").getValue().toString();
+                                                           price = postMS.child("price").getValue().toString();
+                                                           order = postMS.child("name").getValue().toString();
 
 
-                                                           count = postMS.child("COUNT").getValue().toString();
-                                                           pricenum=postMS.child("PRICE").getValue(Integer.class);
-                                                           ordernum=postMS.child("COUNT").getValue(Integer.class);
+                                                           count = postMS.child("count").getValue().toString();
+                                                           pricenum=postMS.child("price").getValue(Integer.class);
+                                                           ordernum=postMS.child("count").getValue(Integer.class);
                                                            bill=bill+pricenum*ordernum;
                                                            //                           System.out.println(bill);
 //                        cvList.add(new CookView(na));
@@ -196,8 +196,8 @@ public class CashierActivity extends AppCompatActivity {
         btnclr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(i=1;i<5;i++) {
-                    DatabaseReference clr = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/"+tab+"/Id"+i);
+                for(i=1;i<20;i++) {
+                    DatabaseReference clr = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/"+tab+"/id"+i);
                     clr.removeValue();
                     CashierActivity.super.onBackPressed();
                 }

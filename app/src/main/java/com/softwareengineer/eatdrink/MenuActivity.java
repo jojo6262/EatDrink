@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.andremion.counterfab.CounterFab;
 import com.google.android.material.tabs.TabLayout;
@@ -23,11 +24,17 @@ public class MenuActivity extends AppCompatActivity {
     static public List<cFragmentPrice> list_price = new ArrayList<>();
     static public List<cFragmentImage> list_img = new ArrayList<>();
     static public CounterFab ii ;
+    static public String Table;
+    static public int nowid = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Bundle table = getIntent().getExtras();
+        Table =table.getString("Key");
+        TextView tt = findViewById(R.id.textView13);
+        tt.setText("TABLE"+Table);
         TabLayout TL = findViewById(R.id.tab1);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -77,6 +84,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void clearFragment(){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DialogFragment myFragment = new DialogFragment();
+        fragmentTransaction.remove(myFragment).commit();
     }
 
     @Override

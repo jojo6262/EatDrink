@@ -149,4 +149,5 @@ public class menuFragmentAdapter extends RecyclerView.Adapter<menuFragmentAdapte
             return false;
         }
     }
+
 }

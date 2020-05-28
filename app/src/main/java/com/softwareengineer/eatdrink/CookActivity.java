@@ -118,16 +118,20 @@ public class CookActivity extends AppCompatActivity {
                   //   user-messages
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-                        na = postMS.child("Name").getValue().toString();
-                        price = postMS.child("Price").getValue().toString();
-                        order = postMS.child("IDOrder").getValue().toString();
-                        menu = postMS.child("IDMenu").getValue().toString();
-                        count = postMS.child("CountOrder").getValue().toString();
-                        cvList.add(new CookView(na));
-                        cpvList.add(new CookPriceView(price));
-                        covList.add(new CookOrderView(order));
-                        cmvList.add(new CookMenuView(menu));
-                        ccvList.add(new CookCountView(count));
+                        na = postMS.child("name").getValue().toString();
+                        System.out.println(na);
+                        if (na.equals("0") ) { }else{
+                            price = postMS.child("price").getValue().toString();
+                            order = postMS.child("idorder").getValue().toString();
+                            //menu = postMS.child("IDMenu").getValue().toString();
+                            count = postMS.child("countOrder").getValue().toString();
+                            cvList.add(new CookView(na));
+                            cpvList.add(new CookPriceView(price));
+                            covList.add(new CookOrderView(order));
+                            //cmvList.add(new CookMenuView(menu));
+                            ccvList.add(new CookCountView(count));
+                        }
+
 
 //                        count = postMS.child("CountOrder").getValue().toString();
 //                        name = postMS.child("Name").getValue().toString();
@@ -164,7 +168,7 @@ public class CookActivity extends AppCompatActivity {
                     }
                 }
                 System.out.println(cvList.size());
-                createRecycle(cvList,cpvList,covList,cmvList,ccvList);
+                createRecycle(cvList,cpvList,covList,ccvList);
                //txttest.setText(s);
             }
 
@@ -179,10 +183,15 @@ public class CookActivity extends AppCompatActivity {
 
     }
 
-    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookOrderView> covList,List<CookMenuView> cmvList,List<CookCountView> ccvList){
+    public void freshTime(){
+
+    }
+
+
+    private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookOrderView> covList,List<CookCountView> ccvList){
         recycleCook = findViewById(R.id.rc_cook);
         recycleCook.setLayoutManager(new LinearLayoutManager(this));
-        recycleCook.setAdapter(new cook_adapter(cvList,cpvList,covList,cmvList,ccvList,this));
+        recycleCook.setAdapter(new cook_adapter(cvList,cpvList,covList,ccvList,this));
     }
 
     private void getData(DataSnapshot dataSnapshot) {

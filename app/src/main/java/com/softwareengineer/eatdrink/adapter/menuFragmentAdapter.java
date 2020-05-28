@@ -71,6 +71,7 @@ public class menuFragmentAdapter extends RecyclerView.Adapter<menuFragmentAdapte
             public void onClick(View view, int position, boolean isLongClick){
                 System.out.println("Click From menuFragment//"+position);
                 Toast.makeText(cContext,"Order",Toast.LENGTH_SHORT );
+                MenuActivity.ii.increase();
                 MenuActivity.list_order.add(new cFragmentName(txtFn.mFragmentName));
                 MenuActivity.list_price.add(new cFragmentPrice(txtFp.mFragmentPrice));
                 MenuActivity.list_img.add(new cFragmentImage(imgF.mFragmentImage));

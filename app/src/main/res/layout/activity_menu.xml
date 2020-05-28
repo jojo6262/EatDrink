@@ -23,9 +23,9 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab1"
-                android:layout_width="1022dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -43,12 +43,12 @@
 
             </com.google.android.material.tabs.TabLayout>
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="49dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/defcart" />
+            <com.andremion.counterfab.CounterFab
+                android:id="@+id/counter_fab"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/cart"/>
 
         </LinearLayout>
 

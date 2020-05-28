@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_customer: /** Start a new Activity Customer.java */
                 Intent intent1 = new Intent(this, MenuActivity.class);
                 this.startActivity(intent1);
+                finish();
                 break;
 
             case R.id.button_cashier: /** Start a new Activity Cashier.java */

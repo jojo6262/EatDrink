@@ -57,11 +57,11 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
       System.out.println(txtCv.CookName);
 
 
-        holder.name.setText(txtCv.CookName);
-        holder.price.setText(txtCpv.CookPrice);
-        holder.order.setText(txtcov.CookIDOrder);
-        holder.menu.setText(txtcmv.CookMenu);
-        holder.count.setText(txtccv.CookCount);
+        holder.name.setText("NAME : "+txtCv.CookName);
+        holder.price.setText("PRICE : "+txtCpv.CookPrice);
+        holder.order.setText("ORDER : "+txtcov.CookIDOrder);
+        //holder.menu.setText(txtcmv.CookMenu);
+        holder.count.setText("PRICE : "+txtccv.CookCount);
         //holder.setItem(position);
     }
 
@@ -81,9 +81,9 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
 
         public cookHolder(@NonNull View itemView) {
             super(itemView);
-            count=itemView.findViewById(R.id.txtcount);
-            menu=itemView.findViewById(R.id.txtorder);
-            name=itemView.findViewById(R.id.txtfoodname);
+            name=itemView.findViewById(R.id.txtcount);
+            //menu=itemView.findViewById(R.id.txtorder);
+            count=itemView.findViewById(R.id.txtfoodname);
             price=itemView.findViewById(R.id.txtprice);
             order=itemView.findViewById(R.id.txtidorder);
         }

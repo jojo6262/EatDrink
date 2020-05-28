@@ -143,7 +143,7 @@ public class CashierActivity extends AppCompatActivity {
                                                            coList.add(new CashierOrder(order));
 //                            cmvList.add(new CashierMenuView(menu));
                                                            ccList.add(new CashierCount(count));
-                                                           txtbill.setText(String.valueOf(bill));
+                                                           txtbill.setText("Total Price : "+String.valueOf(bill));
                                                        }
 //                        count = postMS.child("CountOrder").getValue().toString();
 //                        name = postMS.child("Name").getValue().toString();
@@ -199,6 +199,7 @@ public class CashierActivity extends AppCompatActivity {
                 for(i=1;i<5;i++) {
                     DatabaseReference clr = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/"+tab+"/Id"+i);
                     clr.removeValue();
+                    CashierActivity.super.onBackPressed();
                 }
             }
         });

@@ -59,9 +59,9 @@ public class cashier_adapter extends RecyclerView.Adapter<cashier_adapter.cashie
 
 
 //        holder.menu.setText(txtcmv.CookMenu);
-        holder.count.setText(txtcc.CashierCount);
-        holder.order.setText(txtco.CashierOrder);
-        holder.price.setText(txtcp.CashierPrice);
+        holder.count.setText("COUNT : "+txtcc.CashierCount);
+        holder.order.setText("ORDER NAME : "+txtco.CashierOrder);
+        holder.price.setText("PRICE : "+txtcp.CashierPrice);
         //holder.setItem(position);
     }
 

@@ -34,7 +34,7 @@ public class CashierActivity extends AppCompatActivity {
     protected List<CashierCount> ccList;
     protected List<CashierOrder> coList;
     protected List<CashierPrice> cpList;
-    Integer a,i;
+    Integer a,i=1;
     protected List<CashierMenuView> cmvList;
     TextView txtbill;
     Button btnclr;
@@ -197,7 +197,7 @@ public class CashierActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 for(i=1;i<5;i++) {
-                    DatabaseReference clr = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/Table1/Id"+i);
+                    DatabaseReference clr = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/"+tab+"/Id"+i);
                     clr.removeValue();
                 }
             }

@@ -44,25 +44,12 @@ public class CookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook);
 
-   //     txttest = findViewById(R.id.txttest);
-
-        // init firebase root reference
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference().child("");
 
-        // [WORKED] init a child ref from firebase ref (mRootRef)
-//        DatabaseReference mUsersRef = mRootRef.child("users");
- //       mUsersRef.child("id-111").setValue("jojo626262626262626262626262626262");
-
-        // [WORKED] init another child ref from firebase ref (mRootRef)
-   //     DatabaseReference mMessagesRef = mRootRef.child("messages");
-    //    String key = mMessagesRef.push().getKey();
-
         final HashMap<String, Object> postValues = new HashMap<>();
-//        postValues.put("username", "Jirawatee");
- //       postValues.put("text", "Hello World!");
+
         Map<String, Object> childUpdates = new HashMap<>();
-//        childUpdates.put("/messages/" + key, postValues);
-      //  childUpdates.put("/user-messages/Jirawatee/" + key, postValues);
+
         mRootRef.updateChildren(childUpdates);
 
         cvList = new ArrayList<>();
@@ -74,25 +61,6 @@ public class CookActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                /*
-                 *  eatdrink-se
-                 *  |__ messages
-                 *  |   |_ -M4in3Cr-s8yGSztc2-z
-                 *  |       |__ text : "Hello, World!"   # <--- Say you want this data
-                 *  |       |__ username: "Jirawatee"
-                 *  |__ user-messages
-                 *  |   |_ ...
-                 *  |__ users
-                 *  |   |_ ...
-                 *
-                 *
-                 *  To get the data:
-                 *  String s = snapshot.child("messages/-M4in3Cr-s8yGSztc2-z/text").getValue();
-                 *  >> Hello, World
-                 *
-                 * */
-
-               // String s = snapshot.child("user-messages").getValue().toString();
 
                 String na = "";
                 String price = "";
@@ -103,24 +71,17 @@ public class CookActivity extends AppCompatActivity {
 
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
 
-                 //    postSnapshot => ['messages']
-        //            s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("allmenu") + "\n";
-          //         s += postSnapshot.getKey() + ":" + postSnapshot.hasChild("allmenu") ;
-         //           s += postSnapshot.child("").getValue() + "\n";
 
-
-//                    DataSnapshot messagesSnapshot =postSnapshot.child("");
-//                    for (DataSnapshot postMS: messagesSnapshot.getChildren()) {
-//                        if (postSnapshot.hasChild("allmenu") == true) {
-//                            s += postMS.getChildrenCount() + "\n";
-//                        }
-//                    }
-                  //   user-messages
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
                         na = postMS.child("name").getValue().toString();
                         System.out.println(na);
-                        if (na.equals("0") ) { }else{
+                        if (na.equals("0") ) {
+
+
+                        }
+                        else
+                            {
                             price = postMS.child("price").getValue().toString();
                             order = postMS.child("idorder").getValue().toString();
                             //menu = postMS.child("IDMenu").getValue().toString();
@@ -133,43 +94,18 @@ public class CookActivity extends AppCompatActivity {
                         }
 
 
-//                        count = postMS.child("CountOrder").getValue().toString();
-//                        name = postMS.child("Name").getValue().toString();
-//                        menu = postMS.child("IDMenu").getValue().toString();
-//                        ccvList.add(new CookCountView(count));
-//                        covList.add(new CookOrderView(name));
-//                        cmvList.add(new CookMenuView(menu));
-//                        System.out.println(count);
-//                        DataSnapshot userFood = postMS.child("Food");
-//                        for(DataSnapshot listfood: userFood.getChildren()){
-//                            count = listfood.child("Count").getValue().toString();
-//                            name = listfood.child("Name").getValue().toString();
-//                            menu = listfood.child("IDFood").getValue().toString();
-//                            ccvList.add(new CookCountView(count));
-//                            covList.add(new CookOrderView(name));
-//                            cmvList.add(new CookMenuView(menu));
 
-  //                      }
                     }
 
-     /*
-                  Log.d("list", cvList.toString());
-                    System.out.println(ccvList.toString());
-   */
-//                    System.out.println(ccvList.get(1));
-//                    System.out.println("++++++++++++++++");
 
-
-
-                  //   users
                     DataSnapshot usersSnapshot = postSnapshot.child("");
                     for (DataSnapshot postMS: usersSnapshot.getChildren()){
-    ///                    s += postMS.getKey();
+
                     }
                 }
                 System.out.println(cvList.size());
                 createRecycle(cvList,cpvList,covList,ccvList);
-               //txttest.setText(s);
+
             }
 
             @Override
@@ -177,15 +113,11 @@ public class CookActivity extends AppCompatActivity {
             }
         });
 
-  //      System.out.println("+++++++++ >>>"+cvList.size());
-        //txttest.setText("...");
 
 
-    }
-
-    public void freshTime(){
 
     }
+
 
 
     private void createRecycle(List<CookView> cvList,List<CookPriceView> cpvList,List<CookOrderView> covList,List<CookCountView> ccvList){
@@ -196,10 +128,7 @@ public class CookActivity extends AppCompatActivity {
 
     private void getData(DataSnapshot dataSnapshot) {
         for(DataSnapshot ds : dataSnapshot.getChildren()){
-//            Log.d(Tag, "User Name inside getData: "+ds.child("user-messages").getChildrenCount());
-  //          txttest.setText(s);
-//            int size = (int) dataSnapshot.getChildrenCount();
-  //          txttest.setText(size);
+
         }
         Log.d(Tag, "--------------------------------------------------------------");
     }

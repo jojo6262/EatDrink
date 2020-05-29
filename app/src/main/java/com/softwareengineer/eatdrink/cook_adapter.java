@@ -68,7 +68,7 @@ public class cook_adapter extends RecyclerView.Adapter<cook_adapter.cookHolder> 
         holder.price.setText("PRICE : "+txtCpv.CookPrice);
         holder.order.setText("ORDER : "+txtcov.CookIDOrder);
         //holder.menu.setText(txtcmv.CookMenu);
-        holder.count.setText("PRICE : "+txtccv.CookCount);
+        holder.count.setText("COUNT : "+txtccv.CookCount);
         //holder.setItem(position);
         holder.setItemClickListener(new ItemClickListener() {
             @Override

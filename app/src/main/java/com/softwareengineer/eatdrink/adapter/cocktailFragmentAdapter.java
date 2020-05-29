@@ -49,7 +49,7 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
     }
 
     @Override
-    public void onBindViewHolder(@NonNull cocktailFragmentAdapter.cocktailFragmentHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final cocktailFragmentAdapter.cocktailFragmentHolder holder, final int position) {
         final cFragmentName txtFn = fn.get(position);
         final cFragmentImage imgF = fi.get(position);
         final cFragmentPrice txtFp =fp.get(position);
@@ -66,10 +66,15 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
             public void onClick(View view, int position, boolean isLongClick){
                 System.out.println("Click From cocktailFragment//"+position);
                 Toast.makeText(cContext,"Order",Toast.LENGTH_SHORT );
-                MenuActivity.ii.increase();
-                MenuActivity.list_order.add(new cFragmentName(txtFn.cFragmentName));
-                MenuActivity.list_price.add(new cFragmentPrice(txtFp.cFragmentPrice));
-                MenuActivity.list_img.add(new cFragmentImage(imgF.cFragmentImage));
+                if(MenuActivity.countVodka<3){
+                    MenuActivity.ii.increase();
+                    MenuActivity.countVodka++;
+                    MenuActivity.list_order.add(new cFragmentName(txtFn.cFragmentName));
+                    MenuActivity.list_price.add(new cFragmentPrice(txtFp.cFragmentPrice));
+                    MenuActivity.list_img.add(new cFragmentImage(imgF.cFragmentImage));
+                }else {
+                    Toast.makeText(cContext,"Maximum",Toast.LENGTH_SHORT );
+                }
             }
         });
 

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,19 @@ public class DialogFragment extends Fragment {
         }else{
             Toast.makeText(getActivity(),"No Order",Toast.LENGTH_LONG );
         }
+
+        ImageView delList = view.findViewById(R.id.imageView3);
+        delList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MenuActivity.list_order = new ArrayList<>();
+                MenuActivity.list_img = new ArrayList<>();
+                MenuActivity.list_price = new ArrayList<>();
+                MenuActivity.countVodka = 0 ;
+                MenuActivity.ii.setCount(0);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment3, new DialogFragment()).commit();
+            }
+        });
 
         final List<cFragmentName> newOrder;
         newOrder = MenuActivity.list_order;

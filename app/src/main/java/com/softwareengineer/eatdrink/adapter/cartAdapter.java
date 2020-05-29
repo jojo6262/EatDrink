@@ -86,7 +86,7 @@ public class cartAdapter extends RecyclerView.Adapter<cartAdapter.cartAdapterHol
         public cartAdapterHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.imageView);
-            eeb = itemView.findViewById(R.id.eButton);
+
             name=itemView.findViewById(R.id.textView5);
             price=itemView.findViewById(R.id.textView4);
         }

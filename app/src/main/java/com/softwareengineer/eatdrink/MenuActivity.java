@@ -26,6 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     static public CounterFab ii ;
     static public String Table;
     static public int nowid = 1;
+    static public int countVodka = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +93,5 @@ public class MenuActivity extends AppCompatActivity {
         fragmentTransaction.remove(myFragment).commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        TabLayout TL = findViewById(R.id.tab1);
-        TabLayout.Tab tab = TL.getTabAt(0);
-        tab.select();
-        MenuFragment fragment = new MenuFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment3, fragment);
-        transaction.commit();
-    }
 
 }

@@ -22,6 +22,8 @@ import com.softwareengineer.eatdrink.view.CookView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnCasheir.setOnClickListener(this);
         noti = findViewById(R.id.txtnoti);
 
+        freshTime();
+
     }
 
     @Override
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.button_customer: /** Start a new Activity Customer.java */
-                Intent intent1 = new Intent(this, MenuActivity.class);
+                Intent intent1 = new Intent(this, SplashScreenActivity.class);
                 ee = findViewById(R.id.inputTxtTablu);
                 table = ee.getText().toString();
                 intent1.putExtra("Key",table);
@@ -86,35 +90,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     DataSnapshot userMessagesSnapshot = postSnapshot.child("allmenu");
                     for (DataSnapshot postMS: userMessagesSnapshot.getChildren()){
-
                         i=i+1;
                         if (i==1 ) {
-
                             noti.setText("");
                         }
                         else
                         {
                            noti.setText("New Order!!!!");
+
                         }
-
-
-
                     }
-
-
                     DataSnapshot usersSnapshot = postSnapshot.child("");
                     for (DataSnapshot postMS: usersSnapshot.getChildren()){
 
                     }
                 }
+                i=0;
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
-        
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        freshTime();
+                    }
+                });
+            }
+        },2000);
     }
 }

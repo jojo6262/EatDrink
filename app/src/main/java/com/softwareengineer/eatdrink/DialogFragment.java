@@ -27,6 +27,8 @@ import com.softwareengineer.eatdrink.view.cFragmentName;
 import com.softwareengineer.eatdrink.view.cFragmentPrice;
 
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +85,7 @@ public class DialogFragment extends Fragment {
             public void onClick(View v) {
                 DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference().child("tbd_cashier/Table"+MenuActivity.Table+"/");
                 DatabaseReference mCookRef = FirebaseDatabase.getInstance().getReference().child("user-messages/allmenu/");
+                DatabaseReference logDef = FirebaseDatabase.getInstance().getReference().child("log/");
                 if(newOrder.size() !=0){
                     for(int i=0;i<newOrder.size();i++){
                         cFragmentName cn = newOrder.get(i);
@@ -90,8 +93,10 @@ public class DialogFragment extends Fragment {
                         String price = cc.cFragmentPrice;
                         String name = cn.cFragmentName;
                         String count = "1";
+                        Chef encode = new Chef("T"+MenuActivity.Table+"-"+MenuActivity.nowid,name,count,price);
                         Order order = new Order(name,Integer.parseInt(count),Integer.parseInt(price),"1");
                         Chef chef = new Chef("T"+MenuActivity.Table+"-"+MenuActivity.nowid,name,count,price);
+                        logDef.child(sha256("T"+MenuActivity.Table+"-"+MenuActivity.nowid)).setValue(encode);
                         mRootRef.child("id"+MenuActivity.nowid).setValue(order);
                         mCookRef.child("menu-T"+MenuActivity.Table+"-"+MenuActivity.nowid).setValue(chef);
                         MenuActivity.nowid++;
@@ -110,6 +115,24 @@ public class DialogFragment extends Fragment {
 
         return view;
 
+    }
+
+    public static String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 
 

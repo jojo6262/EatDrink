@@ -55,7 +55,7 @@ public class DialogFragment extends Fragment {
             }
             System.out.println("////////////"+totalprice);
             total = view.findViewById(R.id.textView12);
-            total.setText(""+totalprice);
+            total.setText(""+totalprice+" Bath   Alcohol "+MenuActivity.countVodka+" %");
         }else{
             Toast.makeText(getActivity(),"No Order",Toast.LENGTH_LONG );
         }

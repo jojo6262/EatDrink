@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softwareengineer.eatdrink.ItemClickListener;
 import com.softwareengineer.eatdrink.MenuActivity;
 import com.softwareengineer.eatdrink.R;
+import com.softwareengineer.eatdrink.view.cFragmentAlc;
 import com.softwareengineer.eatdrink.view.cFragmentImage;
 import com.softwareengineer.eatdrink.view.cFragmentName;
 import com.softwareengineer.eatdrink.view.cFragmentPrice;
@@ -31,12 +32,14 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
     private List<cFragmentName> fn;
     private List<cFragmentImage> fi;
     private List<cFragmentPrice> fp;
+    private List<cFragmentAlc> fa;
 
 
-    public cocktailFragmentAdapter(List<cFragmentName> cv, List<cFragmentImage> cpv, List<cFragmentPrice> cov, Context context){
+    public cocktailFragmentAdapter(List<cFragmentName> cv, List<cFragmentImage> cpv, List<cFragmentPrice> cov,List<cFragmentAlc> cav, Context context){
         this.fn = cv;
         this.fi = cpv;
         this.fp = cov;
+        this.fa = cav;
         this.cContext = context;
     }
 
@@ -53,8 +56,9 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
         final cFragmentName txtFn = fn.get(position);
         final cFragmentImage imgF = fi.get(position);
         final cFragmentPrice txtFp =fp.get(position);
+        final cFragmentAlc alcFp = fa.get(position);
         System.out.println(txtFn.cFragmentName+"/"+txtFp.cFragmentPrice);
-        holder.name.setText("NAME : " +txtFn.cFragmentName);
+        holder.name.setText("NAME : " +txtFn.cFragmentName+"  Percentage : " +alcFp.cFragmentAlc+ " %");
         holder.price.setText("PRICE : "+txtFp.cFragmentPrice+" Bath");
         try {
             holder.img.setImageBitmap(getBitmapFromAssets("img/"+imgF.cFragmentImage));
@@ -66,9 +70,10 @@ public class cocktailFragmentAdapter extends RecyclerView.Adapter<cocktailFragme
             public void onClick(View view, int position, boolean isLongClick){
                 System.out.println("Click From cocktailFragment//"+position);
                 Toast.makeText(cContext,"Order",Toast.LENGTH_SHORT );
-                if(MenuActivity.countVodka<3){
+                if(MenuActivity.countVodka + Integer.parseInt(alcFp.cFragmentAlc)/3<100){
                     MenuActivity.ii.increase();
-                    MenuActivity.countVodka++;
+                    MenuActivity.countVodka = MenuActivity.countVodka + Integer.parseInt(alcFp.cFragmentAlc)/3;
+                    System.out.println("/////////////"+MenuActivity.countVodka);
                     MenuActivity.list_order.add(new cFragmentName(txtFn.cFragmentName));
                     MenuActivity.list_price.add(new cFragmentPrice(txtFp.cFragmentPrice));
                     MenuActivity.list_img.add(new cFragmentImage(imgF.cFragmentImage));

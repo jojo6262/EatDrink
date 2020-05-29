@@ -78,72 +78,84 @@
       "ID": "B001",
       "Name": "absolut vodka",
       "Image": "absolut vodka.jpg",
+      "Alcohol": "50",
       "Price": "100"
     },
     {
       "ID": "B002",
       "Name": "bacardi",
       "Image": "bacardi.jpg",
+      "Alcohol": "75",
       "Price": "100"
     },
     {
       "ID": "B003",
       "Name": "berry liqueurs",
       "Image": "berry liqueurs.jpg",
+      "Alcohol": "16",
       "Price": "100"
     },
     {
       "ID": "B004",
       "Name": "blue curacao",
       "Image": "blue curacao.jpg",
+      "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B005",
       "Name": "bombay sapphire",
       "Image": "bombay sapphire.jpg",
+      "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B006",
       "Name": "brugal",
       "Image": "brugal.jpg",
+      "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B007",
       "Name": "chivas regal",
       "Image": "chivas regal.jpg",
+      "Alcohol": "35",
       "Price": "100"
     },
     {
       "ID": "B008",
       "Name": "gin mare",
       "Image": "gin mare.jpg",
+      "Alcohol": "43",
       "Price": "100"
     },
      {
        "ID": "B009",
       "Name": "gordon",
       "Image": "gordon.jpg",
+       "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B010",
       "Name": "grey goose",
       "Image": "grey goose.jpg",
+      "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B011",
       "Name": "hennessy",
       "Image": "hennessy.jpg",
+      "Alcohol": "40",
       "Price": "100"
     },
     {
       "ID": "B012",
       "Name": "honey bee",
       "Image": "honey bee.jpg",
+      "Alcohol": "43",
       "Price": "100"
     }
   ]

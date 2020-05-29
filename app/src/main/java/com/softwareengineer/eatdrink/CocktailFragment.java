@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.softwareengineer.eatdrink.adapter.cocktailFragmentAdapter;
 import com.softwareengineer.eatdrink.adapter.menuFragmentAdapter;
+import com.softwareengineer.eatdrink.view.cFragmentAlc;
 import com.softwareengineer.eatdrink.view.cFragmentImage;
 import com.softwareengineer.eatdrink.view.cFragmentName;
 import com.softwareengineer.eatdrink.view.cFragmentPrice;
@@ -35,6 +36,7 @@ public class CocktailFragment extends Fragment {
     public List<cFragmentName> countName;
     public List<cFragmentImage> countImage;
     public List<cFragmentPrice> countPrice;
+    public List<cFragmentAlc> countAlc;
     RecyclerView recycleMenu;
 
     @Override
@@ -45,6 +47,7 @@ public class CocktailFragment extends Fragment {
         countName = new ArrayList<>();
         countImage = new ArrayList<>();
         countPrice = new ArrayList<>();
+        countAlc = new ArrayList<>();
         try {
             loadJSONFromAsset();
             String aa = listMenu.getString("Drink");
@@ -55,11 +58,12 @@ public class CocktailFragment extends Fragment {
                 countName.add(new cFragmentName(list1.getString("Name")));
                 countImage.add(new cFragmentImage(list1.getString("Image")));
                 countPrice.add(new cFragmentPrice(list1.getString("Price")));
+                countAlc.add(new cFragmentAlc(list1.getString("Alcohol")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        createRecycle(view,countName,countImage,countPrice);
+        createRecycle(view,countName,countImage,countPrice,countAlc);
         return view;
     }
 
@@ -68,10 +72,10 @@ public class CocktailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void createRecycle(ViewGroup view,List<cFragmentName> cvList,List<cFragmentImage> cpvList,List<cFragmentPrice> covList){
+    private void createRecycle(ViewGroup view,List<cFragmentName> cvList,List<cFragmentImage> cpvList,List<cFragmentPrice> covList,List<cFragmentAlc> alcList){
         recycleMenu = view.findViewById(R.id.rc_ctFragment);
         recycleMenu.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycleMenu.setAdapter(new cocktailFragmentAdapter(cvList,cpvList,covList,getActivity()));
+        recycleMenu.setAdapter(new cocktailFragmentAdapter(cvList,cpvList,covList,alcList,getActivity()));
     }
 
     public void loadJSONFromAsset() throws JSONException {
